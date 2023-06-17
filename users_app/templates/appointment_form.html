@@ -6,29 +6,102 @@
 
 {% block body %}
 
-<div class="container">
-    <h4>Book Appointment Now!</h4>
+<div class="container mx-auto">
+  <h4 class="text-center">Book Appointment Now!</h4>
 
-    <div class="appointment-form">
-
+  <div class="appointment-form d-flex flex-column align-items-center">
+    <form>
+      <div class="d-flex justify-content-between">
         <div class="left-appointment">
-            
+          <div class="mb-3">
+            <label for="pet_name" class="form-label">Pet Name</label>
+            <input type="text" name="pet_name" class="form-control" id="pet_name">
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <input type="text" name="gender" class="form-control" id="gender">
+          </div>
 
+          <div class="mb-3">
+            <label for="breed" class="form-label">Breed</label>
+            <input type="text" name="breed" class="form-control" id="breed">
+          </div>
+
+          <!-- This should be a selection of sometype -->
+          <div class="mb-3">
+            <label for="leftPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="leftPassword">
+          </div>
+
+          <div class="mb-3">
+            <label for="leftPassword" class="form-label">Weight</label>
+            <input type="number" name="weight"class="form-control" id="weight">
+          </div>
 
         </div>
 
-        <div class="right-appointment">
 
 
+
+
+
+
+        <div class="right-appointment" style="margin-left: 50px;">
+          <h5>Hygiene Concerns?</h5>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDry">
+            <label class="form-check-label" name="dry" for="flexCheckDry">
+              Dry/Flakey Skin
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckShed">
+            <label class="form-check-label" name="shed" for="flexCheckShed">
+              Sheds
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckEarGunk">
+            <label class="form-check-label" for="flexCheckEarGunk">
+              Ear Gunk
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckSensitiveEars">
+            <label class="form-check-label" name="sensitive_ears" for="flexCheckSensitiveEars">
+              Sensitive Ears
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckButt_dragger">
+            <label class="form-check-label" name="butt_dragger" for="flexCheckButt_dragger">
+              Butt Dragger
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckFleas">
+            <label class="form-check-label" name="fleas" for="flexCheckFleas">
+              Fleas
+            </label>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Anything else we should know? (optional)</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        
+        
+        
+        
+        
         </div>
+      </div>
 
-
-
-
-
-    </div>
-
-    <button>Next</button>
-
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit">Next</button>
+      </div>
+    </form>
+  </div>
 </div>
+
 {% endblock %}
