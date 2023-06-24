@@ -10,7 +10,8 @@
   <h4 class="text-center">Book Appointment Now!</h4>
 
   <div class="appointment-form d-flex flex-column align-items-center">
-    <form>
+    <form action ="/create_appointment" method="post">
+      {% csrf_token %}
       <div class="d-flex justify-content-between">
         <div class="left-appointment">
           <div class="mb-3">
@@ -19,7 +20,10 @@
           </div>
           <div class="mb-3">
             <label for="gender" class="form-label">Gender</label>
-            <input type="text" name="gender" class="form-control" id="gender">
+            <select name="gender" class="form-select" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
           </div>
 
           <div class="mb-3">
@@ -29,12 +33,12 @@
 
           <!-- This should be a selection of sometype -->
           <div class="mb-3">
-            <label for="leftPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="leftPassword">
+            <label for="coat_type" class="form-label">Coat Type</label>
+            <input type="text" class="form-control" name="coat_type" id="coat_type">
           </div>
 
           <div class="mb-3">
-            <label for="leftPassword" class="form-label">Weight</label>
+            <label for="weight" class="form-label">Weight</label>
             <input type="number" name="weight"class="form-control" id="weight">
           </div>
 
@@ -49,45 +53,45 @@
         <div class="right-appointment" style="margin-left: 50px;">
           <h5>Hygiene Concerns?</h5>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDry">
-            <label class="form-check-label" name="dry" for="flexCheckDry">
+            <input class="form-check-input" type="checkbox"  name="dry_flakeyskin" value="1" id="dry_flakeyskin">
+            <label class="form-check-label" for="dry_flakeyskin">
               Dry/Flakey Skin
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckShed">
-            <label class="form-check-label" name="shed" for="flexCheckShed">
+            <input class="form-check-input" type="checkbox" name="sheds" value="1" id="sheds">
+            <label class="form-check-label" for="sheds">
               Sheds
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckEarGunk">
-            <label class="form-check-label" for="flexCheckEarGunk">
+            <input class="form-check-input" type="checkbox" name="ear_gunk" value="1" id="ear_gunk">
+            <label class="form-check-label"  for="ear_gunk">
               Ear Gunk
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckSensitiveEars">
-            <label class="form-check-label" name="sensitive_ears" for="flexCheckSensitiveEars">
+            <input class="form-check-input" type="checkbox" name="sensitive_ears" value="1" id="sensitive_ears">
+            <label class="form-check-label"  for="sensitive_ears">
               Sensitive Ears
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckButt_dragger">
-            <label class="form-check-label" name="butt_dragger" for="flexCheckButt_dragger">
+            <input class="form-check-input" type="checkbox" name="butt_dragger"  value="1" id="butt_dragger">
+            <label class="form-check-label" for="butt_dragger">
               Butt Dragger
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckFleas">
-            <label class="form-check-label" name="fleas" for="flexCheckFleas">
+            <input class="form-check-input" type="checkbox" value="1" name="fleas" id="fleas">
+            <label class="form-check-label"  for="fleas">
               Fleas
             </label>
           </div>
 
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Anything else we should know? (optional)</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" name="anything_else" id="anything_else" rows="3"></textarea>
           </div>
         
         

@@ -10,8 +10,9 @@
     <div class="main-content d-flex justify-content-around">
         <div class="get-started">
             <p>This is the best grooming site you've ever seen!!</p>
-            <button style = "margin-left: 120px;"> Get Started </button>
-
+            <form action="{% url 'book_appointment' %}">
+            <button type ="submit" class ="btn-primary btn" style = "margin-left: 120px;"> Get Started </button>
+            </form>
 
         </div>
 <!-- placeholder for larger image for frontpage -->
@@ -29,8 +30,9 @@
         
         <h4>Locations</h4>
         <p>Redding California</p>
-        <button>Book Now</button>
-
+        <form action="{% url 'book_appointment' %}">
+            <button type="submit" class="btn btn-primary float-left">Book now!</button>
+          </form>
 
     </div>
 

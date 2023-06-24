@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+{% block title %} Login/Reg {% endblock %}
+
+
+{% block body %}
+
+
+<body>
+  <div class="container d-flex flex-column mx-auto" style="width: 700px">
+
+
+
+    <div class="d-flex flex-column mx-auto" style="width: fit-content; margin:50px">
+      <h3>Login</h3>
+      <form action="/login" method='post' class="login_form">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="password" id="confirm_password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+<div class="register_form d-flex flex-column mx-auto" style="width: fit-content;">
+  <h5>Not a member?</h5>
+  <p style="font-style:italic;">Join the pack!</p>
+  <hr>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <form action='/register' method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input type="text" value="{{form_data.first_name}}" class="form-control" id="first_name" name="first_name">
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input type="text" class="form-control" value="{{form_data.last_name}}" id="last_name" name="last_name">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" value="{{form_data.email}}" name="email" class="form-control" id="exampleInputEmail1"
+        aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">Your email will be sold to the highest bidder</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" id="inputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="confirm_password" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" name="confirm_password" id="confirm_password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+
+{% block title %} Service Selection {% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <form action ="{% url 'select_service' %}" method="post" class="mx-auto small-container" id="services-container">
+        {% csrf_token %}
+        <div class="select-service">
+            <h3 class="text-center m-3">Select Services</h3>
+            <div class="d-flex gap-5">
+                {% for service in wash_services %}
+                <!-- <button type="button" id="{{ service.name_to_id }}-button" class="wash_buttons service_buttons w-100">{{service.name}}<br>${{service.price}}</button> -->
+                <label class="wash_buttons service_buttons w-100">
+                    <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input" />
+                    {{service.name}}<br>${{service.price}}
+                </label>
+                {% endfor %}       
+            </div>
+        </div>
+
+        <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center; margin: 10px;">
+            <span style=" background-color: #FFFFFF; padding: 0 10px;">
+                Add-ons!<!--Padding is optional-->
+            </span>
+        </div>
+
+        <div class="d-flex gap-5">
+            <div class="d-flex flex-column col" style="gap: 10px" ;>
+                {% for service in left_add_on_services %}
+                <label class="add-ons service_buttons">
+                    <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input" />
+                    {{service.name}}<br>${{service.price}}
+                </label>
+                {% endfor %}
+                    
+            </div>
+    
+            <div class="d-flex flex-column col " style="gap: 10px" ;>
+                {% for service in right_add_on_services %}
+                <label class="add-ons service_buttons">
+                    <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input"/>
+                    {{service.name}}<br>${{service.price}}
+                </label>
+                {%endfor%}
+                <p style="margin-top: 30px;">Price: (price)</p>
+            </div>
+    
+        </div>
+
+        <input type="hidden" id="selectedOptions" name="selectedOptions" value="">
+        <div class="d-flex justify-content-center">
+            <button type="submit">Book it!</button>
+        </div>
+        
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/static/js/app.js"></script>
+
+
+
+
+
+
+
+{% endblock %}

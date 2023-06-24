@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} complete {% endblock %}
+
+{% block body %}
+
+<div class="container d-flex flex-column align-items-center" style="margin-top: 200px;">
+    
+    <div>
+        <P>Wahoo!! See you soon!!</P>
+    </div>
+
+    
+
+    <div>
+        
+        <hr>
+        <p>Appointment Summary:</p>
+        <p>{{ current_appointment.date }}</p>
+        <p>Pet Name: {{ current_appointment.pet_name }}</p>
+        <p>Services:</p>
+        <ul>
+            {% for service in current_appointment.services.all %}
+                <li>{{ service.name }}</li>
+            {% endfor %}
+        </ul>
+        <p>Price: ${{total_price}}</p>
+        
+
+        
+    </div>
+
+</div>
+
+
+
+{% endblock %}

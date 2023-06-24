@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %} finalize {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class = "content d-flex justify-content-around" style="margin-top: 50px;">
+
+        <div class="calender">
+            <p>Schedule Appointment:</p>
+            <form action="{% url 'finalize' %}" method="post">
+            {% csrf_token %}
+            <input type="datetime-local" name="appointment_datetime">
+            
+            <!-- Calendly inline widget begin -->
+<!-- <div class="calendly-inline-widget" data-url="https://calendly.com/gise-grooms/30min" style="min-width:320px;height:700px;"></div> -->
+
+<!-- Calendly inline widget end -->
+
+        </div>
+
+        <div class="summary">
+            <p>Services</p>
+            <!-- logic to show the services and their prices -->
+            <p>Premium Wash $80</p>
+            <p>Trim $30</p>
+            <p>Gland Expression $10</p>
+            <p>De-Shedding $30</p>
+            <hr>
+            <p>Estimated total: $130</p>
+
+        </div>
+
+    </div>
+
+    <div class ="final-buttons d-flex flex-column mt-3">
+        <button type="submit"> Confirm and Book!</button>
+        <button> Back </button>
+    </form>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
+{% endblock %}

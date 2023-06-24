@@ -1,3 +1,80 @@
 .right-appointmnet{
     gap: 20px;
 }
+
+
+/* .selection-button{
+    background-color: brown;
+} */
+
+.service-button-group{
+    background-color: blue;
+}
+
+
+
+.wash_buttons {
+    padding: 10px 20px;
+    border: 1px solid #a76d6d;
+    border-radius: 3px;
+    background-color: rgb(192, 186, 230);
+    color: #b04040;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+.wash_buttons:disabled {
+    background: gray;
+}
+
+.small-container {
+    max-width: 600px;
+}
+
+button:hover {
+    background-color: #e91025 !important;
+    color: white !important;
+}
+
+/* Hide the browser's default checkbox */
+/* .service_buttons input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+
+.add-ons{
+    color: black;
+    font-weight: bold;
+    font-family: system-ui;
+    font-size: 13px;
+    border: 1px solid #e91025;
+    border: none;
+    border-radius: 3px;
+    background-color: beige;
+}
+.add-ons:disabled {
+    background: gray !important;
+}
+
+.active {
+    background: #dc3545;
+    color: white;
+    font-weight: bold;
+    font-family: system-ui;
+    border: 1px solid #e91025;
+    border-radius: 3px;
+}
+
+.disabled {
+    background-color: #a76d6d;
+    background: #a76d6d;
+}
+
+/* .checkbox-input {
+    display: none;
+  } */
+  
+
