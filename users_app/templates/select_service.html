@@ -7,6 +7,13 @@
 {% block body %}
 
 <div class="container">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form action ="{% url 'select_service' %}" method="post" class="mx-auto small-container" id="services-container">
         {% csrf_token %}
         <div class="select-service">
@@ -31,7 +38,7 @@
         <div class="d-flex gap-5">
             <div class="d-flex flex-column col" style="gap: 10px" ;>
                 {% for service in left_add_on_services %}
-                <label class="add-ons service_buttons">
+                <label class="add-ons wash_buttons service_buttons">
                     <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input" />
                     {{service.name}}<br>${{service.price}}
                 </label>
@@ -41,7 +48,7 @@
     
             <div class="d-flex flex-column col " style="gap: 10px" ;>
                 {% for service in right_add_on_services %}
-                <label class="add-ons service_buttons">
+                <label class="add-ons wash_buttons service_buttons">
                     <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input"/>
                     {{service.name}}<br>${{service.price}}
                 </label>

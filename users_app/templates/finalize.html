@@ -9,6 +9,11 @@
     <div class = "content d-flex justify-content-around" style="margin-top: 50px;">
 
         <div class="calender">
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+            {% endif %}
             <p>Schedule Appointment:</p>
             <form action="{% url 'finalize' %}" method="post">
             {% csrf_token %}
@@ -22,17 +27,15 @@
         </div>
 
         <div class="summary">
-            <p>Services</p>
+            <p>Services:</p>
             <!-- logic to show the services and their prices -->
-            <p>Premium Wash $80</p>
-            <p>Trim $30</p>
-            <p>Gland Expression $10</p>
-            <p>De-Shedding $30</p>
+            {% for service in current_services %}
+            <p>{{service.name}} ${{service.price}}</p>
+            {%endfor%}
             <hr>
-            <p>Estimated total: $130</p>
-
+            <p>Est. Price: ${{total_price}}</p>
         </div>
-
+       
     </div>
 
     <div class ="final-buttons d-flex flex-column mt-3">

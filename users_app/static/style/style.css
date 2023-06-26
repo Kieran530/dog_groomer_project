@@ -1,3 +1,31 @@
+
+.navbar{
+background-color:#022819;
+
+
+}
+
+
+
+.navbar text{
+    color: #a6c099;
+}
+
+.navbar a{
+    color: #a6c099;
+}
+
+body{
+    background-color: #294b30;
+}
+
+body text{
+    color: #a6c099;
+}
+.mb-3{
+    color: #a6c099;
+}
+
 .right-appointmnet{
     gap: 20px;
 }
@@ -17,14 +45,18 @@
     padding: 10px 20px;
     border: 1px solid #a76d6d;
     border-radius: 3px;
-    background-color: rgb(192, 186, 230);
+    background-color: rgb(40, 35, 73);
     color: #b04040;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 }
+
+
+
 .wash_buttons:disabled {
     background: gray;
+    background-color: #022819;
 }
 
 .small-container {
@@ -43,9 +75,11 @@ button:hover {
     cursor: pointer;
     height: 0;
     width: 0;
+    visibility: hidden;
 } */
 
-.add-ons{
+
+/* .add-ons{
     color: black;
     font-weight: bold;
     font-family: system-ui;
@@ -53,11 +87,11 @@ button:hover {
     border: 1px solid #e91025;
     border: none;
     border-radius: 3px;
-    background-color: beige;
-}
-.add-ons:disabled {
+    background-color: rgb(29, 113, 118);
+} */
+/* .add-ons:disabled {
     background: gray !important;
-}
+} */
 
 .active {
     background: #dc3545;

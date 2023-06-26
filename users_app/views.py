@@ -72,6 +72,31 @@ def create_appointment(request):
     
     request.session["appointment_in_progress"]=request.POST
     current_appointment=request.session["appointment_in_progress"]
+    print(current_appointment)
+    
+    def check_appointment_form(some_dict):
+        reset_counter=0
+        if some_dict["pet_name"]=="":
+            messages.error(request,"Please enter a pet name")
+            reset_counter+=1
+        if some_dict["breed"]=="":
+            messages.error(request,"Please enter a breed")
+            reset_counter+=1
+        if some_dict["weight"]=="":
+            messages.error(request,"Please enter a weight")
+            reset_counter+=1
+        if some_dict["coat_type"]=="":
+            messages.error(request,"Please enter a coat type")
+            reset_counter+=1
+        return reset_counter
+    
+
+    errors_count=check_appointment_form(current_appointment)
+    if errors_count>0:
+        request.session["appointment_in_progress"]=current_appointment
+        return redirect("book_appointment")
+    request.session["appointment_in_progress"] = current_appointment 
+
     return redirect("select_service")
 
 
@@ -79,6 +104,11 @@ def select_service(request):
     if request.method == "POST":
         selected_services = request.POST.getlist('services[]')
         request.session["selected_services"] = selected_services
+
+        if len(selected_services) == 0:
+            messages.error(request, "Please select at least one service")
+            return redirect("select_service")
+
 
         print(request.session["selected_services"])
         return redirect("finalize")
@@ -104,12 +134,18 @@ def select_service(request):
 
 def finalize_appointment(request):
     if request.method == 'POST':
+        appointment_datetime_str = request.POST.get("appointment_datetime")
+
+        if not appointment_datetime_str:
+            messages.error(request, "Please select an appointment date and time")
+            return redirect("finalize")
+
         appointment_datetime = request.POST['appointment_datetime']
+
 
         service_ids = [int(id) for id in request.session["selected_services"]]
         services = Service.objects.filter(id__in=service_ids)
         
-        appointment_datetime_str = request.POST.get("appointment_datetime")
         appointment_datetime = datetime.strptime(appointment_datetime_str, "%Y-%m-%dT%H:%M")
 
         appointment = Appointment.objects.create(
@@ -129,9 +165,13 @@ def finalize_appointment(request):
             user=User.objects.get(id=request.session["user_id"])                    )
         
         appointment.services.set(services)
-
+        
         return redirect("complete")
-    return render(request,"finalize.html")
+    
+
+    current_services=Service.objects.filter(id__in=request.session["selected_services"])
+    total_price = current_services.aggregate(total=Sum('price'))['total']
+    return render(request,"finalize.html",{"current_services":current_services,"total_price":total_price})
 
 def complete_appointment(request):
 

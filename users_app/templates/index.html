@@ -4,11 +4,11 @@
 
 
 {% block body %}
-
-<div class="container" style ="margin-top: 300px;">
+{% load static %}
+<div class="container" style ="margin-top: 250px;">
 
     <div class="main-content d-flex justify-content-around">
-        <div class="get-started">
+        <div class="get-started" style="padding-top: 100px;">
             <p>This is the best grooming site you've ever seen!!</p>
             <form action="{% url 'book_appointment' %}">
             <button type ="submit" class ="btn-primary btn" style = "margin-left: 120px;"> Get Started </button>
@@ -17,15 +17,15 @@
         </div>
 <!-- placeholder for larger image for frontpage -->
         
-        <div style="width:100px; height: 100px; background-color: brown;">
-
+        <div>
+            <img style="max-height:400px;" src="{% static '\images\1920-cute-little-puppy-in-bathroom-illustration-ai-generative.jpg' %}" alt="le image">
         </div>
-
+        
     </div>
 
 
 
-    <div class="footer mx-auto text-center" style="margin-top: 300px;">
+    <div class="footer mx-auto text-center" style="margin-top: 100px;">
         <hr>
         
         <h4>Locations</h4>

@@ -10,6 +10,13 @@
   <h4 class="text-center">Book Appointment Now!</h4>
 
   <div class="appointment-form d-flex flex-column align-items-center">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
     <form action ="/create_appointment" method="post">
       {% csrf_token %}
       <div class="d-flex justify-content-between">
@@ -34,12 +41,16 @@
           <!-- This should be a selection of sometype -->
           <div class="mb-3">
             <label for="coat_type" class="form-label">Coat Type</label>
-            <input type="text" class="form-control" name="coat_type" id="coat_type">
+            <select name="coat_type" class="form-select" id="coat_type">
+              <option value="">Select an option</option>
+              <option value="Long and Fluffy">Long and Fluffy</option>
+              <option value="Short + Easy">Short + Easy</option>
+            </select>
           </div>
 
           <div class="mb-3">
             <label for="weight" class="form-label">Weight</label>
-            <input type="number" name="weight"class="form-control" id="weight">
+            <input type="number" name="weight"class="form-control" id="weight" min="1" max="300">
           </div>
 
         </div>
