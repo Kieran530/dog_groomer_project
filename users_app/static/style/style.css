@@ -52,12 +52,65 @@ body text{
     transition: all 0.1s ease-in-out;
 }
 
+.wash_buttons.disabled {
+    background: #a76d6d;
+    color: #b04040;
+    cursor: not-allowed;
+}
+.wash_buttons.disabled:hover {
+    background: #1d0606;
+    color: #0b0808;
+}
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.service_buttons {
+    /* Styles for add-on buttons */
+    padding: 10px 20px;
+    border: 1px solid #a76d6d;
+    border-radius: 3px;
+    background-color: rgb(40, 35, 73);
+    color: #b04040;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.service_buttons.disabled {
+    background: #a76d6d;
+    color: #b04040;
+    cursor: not-allowed;
+}
+
+.service_buttons.disabled:hover {
+    background: #1d0606;
+    color: #0b0808;
+}
+
+.selected {
+    background-color: #e91025;
+    color: white;
+  }
 
 
-.wash_buttons:disabled {
+
+
+
+.checkbox-input:disabled {
     background: gray;
     background-color: #022819;
-}
+    
+  }
+
+
+
 
 .small-container {
     max-width: 600px;
@@ -107,8 +160,6 @@ button:hover {
     background: #a76d6d;
 }
 
-/* .checkbox-input {
-    display: none;
-  } */
+
   
 

@@ -2,7 +2,8 @@
 
 
 {% block title %} Service Selection {% endblock %}
-
+<head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 
 {% block body %}
 
@@ -23,7 +24,7 @@
                 <!-- <button type="button" id="{{ service.name_to_id }}-button" class="wash_buttons service_buttons w-100">{{service.name}}<br>${{service.price}}</button> -->
                 <label class="wash_buttons service_buttons w-100">
                     <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input" />
-                    {{service.name}}<br>${{service.price}}
+                    {{service.name}}<br><span class="price">${{service.price}}</span>
                 </label>
                 {% endfor %}       
             </div>
@@ -38,9 +39,9 @@
         <div class="d-flex gap-5">
             <div class="d-flex flex-column col" style="gap: 10px" ;>
                 {% for service in left_add_on_services %}
-                <label class="add-ons wash_buttons service_buttons">
+                <label class="wash_buttons service_buttons">
                     <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input" />
-                    {{service.name}}<br>${{service.price}}
+                    {{service.name}}<br><span class="price">${{service.price}}</span>
                 </label>
                 {% endfor %}
                     
@@ -48,12 +49,12 @@
     
             <div class="d-flex flex-column col " style="gap: 10px" ;>
                 {% for service in right_add_on_services %}
-                <label class="add-ons wash_buttons service_buttons">
+                <label class="wash_buttons service_buttons">
                     <input type="checkbox" id="{{service.id}}-checkbox" name="services[]" value="{{ service.id }}" class="checkbox-input"/>
-                    {{service.name}}<br>${{service.price}}
+                    {{service.name}}<br><span class="price">${{service.price}}</span>
                 </label>
                 {%endfor%}
-                <p style="margin-top: 30px;">Price: (price)</p>
+                <p style="margin-top: 30px;">Price: <span id ="total-price">0.00</span></p>
             </div>
     
         </div>
