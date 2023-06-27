@@ -12,8 +12,12 @@ def index(request):
     return render(request,"index.html")
 
 def login_reg(request):
-    return render(request,"login&reg.html")
-
+    form_data = request.session.get('form_data', {
+    'first_name': '',
+    'last_name': '',
+    'email': '',
+})
+    return render(request, "login&reg.html", {'form_data': form_data})      
 #add validations here
 #add password encryption
 def login(request):
@@ -45,6 +49,14 @@ def register(request):
 
     errors=User.objects.basic_validator(request.POST)
     if len(errors)>0:
+        # Save values to session
+        request.session['form_data'] = {
+                'first_name': request.POST.get('first_name', ''),
+                'last_name': request.POST.get('last_name', ''),
+                'email': request.POST.get('email', ''),
+            }
+
+
         for key,value in errors.items():
             messages.error(request,value)
         return redirect("login&reg")
@@ -60,13 +72,25 @@ def register(request):
 
         add_new_user=User.objects.create(first_name=first_name,last_name=last_name,email=email,password=password)
         request.session["user_id"]=add_new_user.id
+
+        # Clear session data
+        del request.session['form_data']
+
         return redirect("index")    
 
 def about(request):
     return render(request,"about.html")
 
 def book_appointment(request):
-    return render(request,"appointment_form.html")
+    apppointment_in_progress=request.session.get("appointment_in_progress",{
+        'pet_name':"",
+        'breed': '',
+        'weight': '', 
+        'coat_type': '',
+    })
+
+
+    return render(request,"appointment_form.html",{"appointment_in_progress":apppointment_in_progress})
 
 def create_appointment(request):
     
@@ -134,7 +158,12 @@ def select_service(request):
 
 def finalize_appointment(request):
     if request.method == 'POST':
-        appointment_datetime_str = request.POST.get("appointment_datetime")
+        if 'user_id' not in request.session:
+            messages.error(request, "Please log in or register to book an appointment")
+            return redirect("login&reg")
+        else:
+
+            appointment_datetime_str = request.POST.get("appointment_datetime")
 
         if not appointment_datetime_str:
             messages.error(request, "Please select an appointment date and time")

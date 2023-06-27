@@ -5,7 +5,9 @@ background-color:#022819;
 
 }
 
-
+.navbar:hover{
+    color: #a6c099;
+}
 
 .navbar text{
     color: #a6c099;
@@ -16,14 +18,29 @@ background-color:#022819;
 }
 
 body{
-    background-color: #294b30;
+    background-color: #b49988;
+}
+
+.form-control{
+    background-color: #a6c099!important;
+}
+
+.form-select{
+    background-color: #a6c099!important;
 }
 
 body text{
     color: #a6c099;
 }
 .mb-3{
-    color: #a6c099;
+    color: rgba(6, 62, 18, 0.863);
+    font-weight: 500;
+}
+
+
+.card{
+    background-color: #a6c099e3;
+    color:rgb(7, 83, 24)
 }
 
 .right-appointmnet{
@@ -45,21 +62,24 @@ body text{
     padding: 10px 20px;
     border: 1px solid #a76d6d;
     border-radius: 3px;
-    background-color: rgb(40, 35, 73);
+    background-color:#a6c099;
     color: #b04040;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
+    color:  rgb(7, 83, 24);
+    
+}
+
+.wash_buttons:hover {
+    background-color: #1c4832;
+    color: white;
 }
 
 .wash_buttons.disabled {
     background: #a76d6d;
-    color: #b04040;
+    color: #802323ac;
     cursor: not-allowed;
-}
-.wash_buttons.disabled:hover {
-    background: #1d0606;
-    color: #0b0808;
 }
 
 .checkbox-input {
@@ -71,36 +91,47 @@ body text{
     visibility: hidden;
 }
 
+button{
+    background-color:#a6c099 !important;    
+    color: #0f291c!important;
+    font-weight: bold !important;
+    border: 1px solid #6b3109 !important;
+}   
+
+button:hover {
+    background-color: #143826 !important;
+    color: white !important;
+}
+
 .service_buttons {
     /* Styles for add-on buttons */
     padding: 10px 20px;
     border: 1px solid #a76d6d;
     border-radius: 3px;
-    background-color: rgb(40, 35, 73);
-    color: #b04040;
+    background-color: #a6c099e3;
+    color: ;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 }
 
 .service_buttons.disabled {
-    background: #a76d6d;
-    color: #b04040;
+    background: #5b4132;
+    color: #4f1717;
     cursor: not-allowed;
 }
 
-.service_buttons.disabled:hover {
-    background: #1d0606;
-    color: #0b0808;
-}
 
 .selected {
-    background-color: #e91025;
+    background-color: #1c4832;
     color: white;
   }
 
 
-
+.summary p{
+    color: #1c4832;
+    font-weight: bold;
+}
 
 
 .checkbox-input:disabled {
@@ -110,41 +141,21 @@ body text{
   }
 
 
+.complete_container p{
+    color: #1c4832;
+    font-weight: bold;
+    
+}
+.complete_container li{
+    color: #1c4832;
+    font-weight: bold;
+    
+}
 
 
 .small-container {
     max-width: 600px;
 }
-
-button:hover {
-    background-color: #e91025 !important;
-    color: white !important;
-}
-
-/* Hide the browser's default checkbox */
-/* .service_buttons input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-    visibility: hidden;
-} */
-
-
-/* .add-ons{
-    color: black;
-    font-weight: bold;
-    font-family: system-ui;
-    font-size: 13px;
-    border: 1px solid #e91025;
-    border: none;
-    border-radius: 3px;
-    background-color: rgb(29, 113, 118);
-} */
-/* .add-ons:disabled {
-    background: gray !important;
-} */
 
 .active {
     background: #dc3545;

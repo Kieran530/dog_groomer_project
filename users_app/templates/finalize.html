@@ -38,12 +38,16 @@
        
     </div>
 
-    <div class ="final-buttons d-flex flex-column mt-3">
-        <button type="submit"> Confirm and Book!</button>
-        <button> Back </button>
+    <div class ="final-buttons flex-column d-flex align-items-center gap-3">
+        <button style="width: fit-content" type="submit"> Confirm and Book!</button>
     </form>
-
+        
+            <form action="{% url 'select_service' %}">
+            <button type="submit"> Back</button>
+            </form>
+        
     </div>
+    
 
 
 
