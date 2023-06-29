@@ -5,7 +5,7 @@ urlpatterns = [
     path("home",views.index, name="index"),
     path("register",views.register,name="register"),
     path("login",views.login,name="login"),
-    path("login&reg",views.login_reg,name="login&reg"),
+    path("login-reg",views.login_reg,name="login&reg"),
     path("logout",views.logout,name="logout"),
 
     path("book",views.book_appointment,name="book_appointment"),
@@ -17,4 +17,9 @@ urlpatterns = [
     path("book/complete",views.complete_appointment,name="complete"),
     path("services",views.services,name="services"),
     path("about",views.about,name="about"),
+
+    path("appointments",views.view_appointments,name="appointments"),
+    
+    path("appointments/<int:appointment_id>/delete",views.delete_appointment,name="delete_appointment"),
 ]
+

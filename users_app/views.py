@@ -23,7 +23,7 @@ def login_reg(request):
 def login(request):
     email = request.POST.get("email")
     password = request.POST.get("password")
-
+    error_count=0
     try:
         user = User.objects.get(email=email)
         if checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
@@ -36,9 +36,12 @@ def login(request):
             return redirect("login&reg")
     except User.DoesNotExist:
         # Email does not exist, display error message
+        
         messages.error(request, "Email is not registered")
+        #if there are no errors, check if finalize_url is in session and redirect to finalize if it is
+        
         return redirect("login&reg")
-    
+       
 
 def logout(request):
     request.session.clear()
@@ -75,8 +78,11 @@ def register(request):
 
         # Clear session data
         del request.session['form_data']
-
-        return redirect("index")    
+        #if finalize_url is in session, redriect to finalize
+        if "finalize_url" in request.session:
+            return redirect(request.session["finalize_url"])
+        else:
+            return redirect("index")    
 
 def about(request):
     return render(request,"about.html")
@@ -159,6 +165,9 @@ def select_service(request):
 def finalize_appointment(request):
     if request.method == 'POST':
         if 'user_id' not in request.session:
+            
+            #save the Finalize URL to session
+            request.session["finalize_url"] = "finalize"
             messages.error(request, "Please log in or register to book an appointment")
             return redirect("login&reg")
         else:
@@ -209,7 +218,11 @@ def complete_appointment(request):
 
 
     total_price = current_appointment.services.aggregate(total=Sum('price'))['total']
-
+    #clear session of the appointment in progress and the finalize url
+    del request.session["appointment_in_progress"]
+    if "finalize_url" in request.session:
+        del request.session["finalize_url"]
+    # del request.session["finalize_url"]
     return render(request,"complete.html",{"current_appointment":current_appointment,"total_price":total_price})
 
 
@@ -221,3 +234,32 @@ def complete_appointment(request):
 
 def services(request):
     return render(request,"services.html")
+
+
+
+def view_appointments(request):
+    # if 'user_id' not in request.session or request.session["user_id"] != '10':
+    #     print("not admin")
+    #     return redirect("index")
+    # else:
+        appointments=Appointment.objects.all()
+        appointments=appointments.order_by("-date")
+        return render(request,"view_appointments.html",{"appointments":appointments})
+
+
+# def view_appointment(request,appointment_id):
+#     appointment=Appointment.objects.get(id=appointment_id)
+#     total_price = appointment.services.aggregate(total=Sum('price'))['total']
+#     return render(request,"view_appointment.html",{"appointment":appointment,"total_price":total_price})
+
+# def edit_appointment(request,appointment_id):
+#     appointment=Appointment.objects.get(id=appointment_id)
+#     return render(request,"edit_appointment.html",{"appointment":appointment})
+
+# def update_appointment(request,appointment_id):
+#     return redirect("view_appointment",appointment_id=appointment_id)
+
+def delete_appointment(request,appointment_id):
+    appointment=Appointment.objects.get(id=appointment_id)
+    appointment.delete()
+    return redirect("view_appointments")

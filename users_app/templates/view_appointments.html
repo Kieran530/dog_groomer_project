@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block title %} About Us {% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+
+
+
+<div class="content" style="margin-top: 50px;">
+    <h1>All Appointments</h1>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                
+                <th scope="col">Pet Name</th>
+                <th scope="col">Services</th>
+                <th scope="col">Actions</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                
+                <td>{{ appointment.pet_name }}</td>
+                <td>{{ appointment.date}}</td>
+                <td><a href="">Edit</a>|<a href="{% url 'delete_appointment' appointment.id %}">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table
+
+
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

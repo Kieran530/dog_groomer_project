@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from users_app.admin import groom_site
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('groomadmin/', groom_site.urls),
     path('',include('users_app.urls'))
 ]
+
+
+# admin.site.index_title = "Gise Grooms"
+# admin.site.site_title = "Gise Grooms"   
+# admin.site.site_header = "Gise Grooms admin"
