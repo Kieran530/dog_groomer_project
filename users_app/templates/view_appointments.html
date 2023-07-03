@@ -28,7 +28,7 @@
                 
                 <td>{{ appointment.pet_name }}</td>
                 <td>{{ appointment.date}}</td>
-                <td><a href="">Edit</a>|<a href="{% url 'delete_appointment' appointment.id %}">Delete</a></td>
+                <td><a href ="{% url 'view_single_appointment' appointment.id %}">View</a>|<a href="">Edit</a>|<a href="{% url 'delete_appointment' appointment.id %}">Delete</a></td>
               </tr>
               {% endfor %}
             </tbody>

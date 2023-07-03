@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} View Info {% endblock %}
+
+{% block body %}
+
+
+
+
+
+<div class="container d-flex flex-column align-items-center">
+
+    <hr>
+    <p>Appointment Summary:</p>
+    <p>{{ appointment.date }}</p>
+    <p>Pet Name: {{ appointment.pet_name }}</p>
+    <p>Services:</p>
+    <ul>
+        {% for service in appointment.services.all %}
+            <li>{{ service.name }}</li>
+        {% endfor %}
+    </ul>
+    <p>Price: ${{total_price}}</p>
+    <form action="{% url 'appointments' %}">
+    <button>
+        Back to Appointments
+    </button>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

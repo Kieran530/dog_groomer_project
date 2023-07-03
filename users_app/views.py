@@ -238,19 +238,24 @@ def services(request):
 
 
 def view_appointments(request):
-    # if 'user_id' not in request.session or request.session["user_id"] != '10':
-    #     print("not admin")
-    #     return redirect("index")
-    # else:
-        appointments=Appointment.objects.all()
-        appointments=appointments.order_by("-date")
+    user_id= request.session.get("user_id")
+    if user_id is None or user_id != 10:
+        print("not admin")
+        return redirect("index")
+    else:
+        appointments=Appointment.objects.all().order_by("-date")
         return render(request,"view_appointments.html",{"appointments":appointments})
 
 
-# def view_appointment(request,appointment_id):
-#     appointment=Appointment.objects.get(id=appointment_id)
-#     total_price = appointment.services.aggregate(total=Sum('price'))['total']
-#     return render(request,"view_appointment.html",{"appointment":appointment,"total_price":total_price})
+def view__single_appointment(request,appointment_id):
+    user_id= request.session.get("user_id")
+    if user_id is None or user_id != 10:
+        print("not admin")
+        return redirect("index")
+    else:
+        appointment=Appointment.objects.get(id=appointment_id)
+        total_price = appointment.services.aggregate(total=Sum('price'))['total']
+        return render(request,"view_single_appointment.html",{"appointment":appointment,"total_price":total_price})
 
 # def edit_appointment(request,appointment_id):
 #     appointment=Appointment.objects.get(id=appointment_id)
@@ -262,4 +267,4 @@ def view_appointments(request):
 def delete_appointment(request,appointment_id):
     appointment=Appointment.objects.get(id=appointment_id)
     appointment.delete()
-    return redirect("view_appointments")
+    return redirect("appointments")
